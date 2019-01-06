@@ -1,0 +1,78 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('user/update')}">
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">用户名：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="username" value="{$user.username}" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">密码：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="password" name="password" placeholder="为安全计，此处不显示密码，点击直接修改" value="" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">邮箱：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="email" value="{$user.email}" required >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">身高：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="height" value="{$user.height}" style="width: 250px;" >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">体重：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="weight" value="{$user.weight}" style="width: 250px;" >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">TEL：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="tel" value="{$user.tel}" style="width: 250px;" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">地址：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="address" value="{$user.address}" style="width: 250px;" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">代表图：</label>
+				{if condition="$user.image_null eq 0"}
+				<div class="formControls col-xs-8 col-sm-9">
+                        <div id="file_upload"></div>
+                        <input type="hidden" id="file_upload_image" multiple="true" name="image">
+                        <img  src="{$user.image}"   id="upload_org_code_img" width="250" height="150">
+                        <input type="hidden" name="image" id="file" value="{$user.image}">
+                         <input style="display: none;" id="originimg" value="{$user.image}">
+                </div>
+                        {else}
+                <div class="formControls col-xs-8 col-sm-9">
+                        <div id="file_upload"></div>
+                        <img src="" style="display: none;" id="upload_org_code_img" width="150" height="150">
+                        <input type="text" style="display: none;" id="file_upload_image" multiple="true" name="image">
+                        <input  style="display: none;"  id="originimg" value="">
+                        <img  src="{$user.image}" height="150" width="150">
+                </div>
+                        {/if}  
+			</div>
+		<div class="row cl">
+            <input type="hidden" name="id" value="{$user.id}"/>
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}

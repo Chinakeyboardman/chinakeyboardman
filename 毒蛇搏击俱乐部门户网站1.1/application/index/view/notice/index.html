@@ -1,0 +1,24 @@
+{include file="public/head"}
+<style type="text/css">
+    li {
+        list-style: none;
+    }
+    .notice {
+        line-height: 20px;
+        font-size: 20px;
+        border: 1px solid #bdbdbd;
+        border-radius: 5px;
+        background: #EDEDED;
+        margin: 20px;
+        padding: 20px;
+    }
+</style>
+ <div style="margin: 20px 0px 10px 95px;"><a href="/"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></div>
+        <div>
+             {volist name="notice" id="vo"}
+             <li class="notice"><i class="Hui-iconfont">&#xe62f;</i><label style="margin-left: 5px;">{$vo.content}</label></li>
+             {/volist}
+        </div>
+<div class="footer-content"></div>
+</body>
+</html>

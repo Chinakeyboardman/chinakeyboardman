@@ -1,0 +1,22 @@
+{include file="public/head"}
+<style type="text/css">
+    .text-main {
+        margin: 0 auto;
+    }
+</style>
+<div class="head" style=" margin-left: 40px;margin-top: 30px;">
+            <ul>  
+                <li><a href="/"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+            </ul>
+        </div>
+        <div>
+            <div style="font-size: 25px;text-align: center;">{$activity->name}</div>
+            <div class="images-board">
+                <img src="{$activity.image}" class="item-img-large" style="display:block;margin:0 auto;text-align: center;"/>
+            </div>
+            <div><span style="font-size: 20px;font-weight: bold;">课程详情</span></div>
+            <div style="margin-top: 20px;">{$activity.description|html_entity_decode}</div>
+        </div>
+<div class="footer-content"></div>
+</body>
+</html>

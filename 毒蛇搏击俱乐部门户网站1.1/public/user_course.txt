@@ -1,0 +1,6 @@
+array (
+  'user_id' => 5,
+  'course_id' => 1,
+  'price' => 9,
+  'create_time' => '2018-07-13 16:29:47',
+)

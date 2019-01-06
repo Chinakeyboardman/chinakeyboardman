@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{$title}</title>
+    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon"  />
+    <link rel="stylesheet" href="__STATIC__/index/css/base.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/common.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/{$controller}.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/admin/hui/lib/Hui-iconfont/1.0.7/iconfont.css" />
+    <script type="text/javascript" src="__STATIC__/index/js/html5shiv.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/respond.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/uikit.min.css">
+    <script type="text/javascript" src="__STATIC__/index/js/uikit.min.js"></script>
+    <!-- <link href="https://cdn.bootcss.com/uikit/3.0.0-rc.3/css/uikit.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdn.bootcss.com/uikit/3.0.0-rc.3/js/uikit.js"></script> -->
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/Huploadify/jquery.Huploadify.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/Huploadify/Huploadify.css">
+    <!-- <link rel="stylesheet" href="__STATIC__/index/css/base.css" /> -->
+    <link rel="stylesheet" href="__STATIC__/index/css/register.css" />
+    <style type="text/css">
+#previewImgs{
+    width:auto;
+    height:auto;
+    list-style:none;
+    }
+#previewImgs li{
+    display:block;
+    width: 250px;
+    height:150px;
+    margin: 5px;
+    float:left;
+    list-style: none;
+    overflow: hidden;
+    }
+#share {margin-top: 10px;}
+#share .wenzi {font-size: 20px;color: #444; font-weight: 700;text-align: center;margin: 0px auto;width: 100%;}
+</style>
+</head>
+<body>
+<div class="header-bar" style="top: -20px;" >
+    <div class="header-inner">
+        <ul class="father">
+            {if condition="$user"}<!--从Base里面传过来的$user  说明这个用户已经登录-->
+            <li style="margin-left: 900px;">欢迎您：{$user->username}</li>
+            <li><a href="{:url('index/info',['id'=>$user.id])}">个人信息</a></li>
+            <li><a href="/#share"  data-uk-smooth-scroll >小分享</a></li>
+            <li><a href="{:url('user/logout')}">退出</a></li>
+            {else /}
+            <li style="margin-left: 1000px;"><a href="{:url('user/register')}">注册</a></li>
+            <li>|</li>
+            <li><a href="{:url('user/login')}">登录</a></li>
+            {/if}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+{include file="public/head"}
+<div style="margin: 20px 0px -40px 95px;">
+    <a href="/">
+        <img src="__STATIC__/index/image/logo.png" alt="logo">
+    </a>
+</div>
+<div class="p-detail">
+    <div class="p-bread-crumb">
+        <div class="w-bread-crumb">
+        </div>
+    </div>
+    <div class="static-hook-real static-hook-id-5"></div>
+    <div class="p-item-info">
+        <div class="w-item-info">
+            <h2> </h2>
+            <div class="item-title">
+                <span class="text-main" id="deal_name">{$deal->name}</span>
+            </div>
+            <div class="ii-images static-hook-real static-hook-id-6">
+                <div class="w-item-images">
+                    <div class="images-board">
+                        <img src="{$deal.image}" class="item-img-large" />
+                    </div>
+                </div>
+            </div>
+            <div class="ii-intro">
+                <div class="w-item-intro">
+                    <div class="price-area-wrap static-hook-real static-hook-id-8">
+                        <div class="price-area has-promotion-icon">
+                            <div class="pic-price-area">
+                                <span class="priceNum" id="priceNum">{$deal.price}</span>
+                                <span class="moneyico" style="color: #9e9e9e;margin-left: 10px;">积分</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="ugc-strategy-area static-hook-real static-hook-id-10">
+                        <li class="item-bought">
+                            <div class="sl-wrap">
+                                <div class="sl-wrap-cnt">
+                                    <!-- <div class="item-bought-num"><span class="intro-strong"> </span>请使用积分购买</div> -->
+                                    <div class="item-bought-num"><span class="intro-strong"> </span>{$deal_special}</div>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <div class="item-bought-num"><span class="intro-strong"> </span>选择教练：
+                                         <select id="coach">
+                                            {volist name="correct_coach" id="vo"}
+                                            <label>{$vo}</label>
+                                            <option value="{$vo}">{:getCoachById($vo)}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                        <div class="row cl">
+                        <label class="form form-label col-xs-4 col-sm-2">预约时间：</label>
+                           <input type="text" style="width: 218px;" name="start_time" class="input-text" id="yuyue_time" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"  value="" style="width: 200px;height: 50px;">
+                    </div>
+                    </ul>
+                    <div class="buy-panel-wrap">
+                        <div class="buy-panel">
+                            <div class="item-buy-area">
+                                {if condition="$existence eq 0"}
+                                <div style="float:left;" class="static-hook-real static-hook-id-12">
+                                    <a id="buttonyuding" class="o2o_click btn-buy btn-buy-qrnew j-btn-buy btn-hit">预订</a>
+                                </div>
+                                {else}
+                                <div style="float:left;" class="static-hook-real static-hook-id-12" >
+                                    <a style="background: grey;border-bottom: 1px solid grey;cursor: not-allowed;" class="o2o_click btn-buy btn-buy-qrnew ">已预订</a>
+                                </div>
+                                {/if}
+                                <!-- <div>
+                                    已经预约的时间： <br>
+                                    {volist name="yuyue" id="vo"}
+                                    <label>{$vo.yuyue_time}</label><br>
+                                    {/volist}
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-item-info-more">
+        <div class="iim-wrapper">
+            <div class="spec-nav ">
+                <div class="nav-bar"></div>
+                <div class="w-spec-nav" style="position: static; top: auto; z-index: auto;">
+                    <ul class="sn-list">
+                        <li class="spec-nav-current">
+                            <i></i><a><span>课程详情</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="j-info-all">
+                <li class="tab">
+                    <div class="ifram">{$deal.brief|html_entity_decode}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<input type="text" style="display: none;" name="userId" id="userId" value="{$userId}">
+<input type="text" style="display: none;" name="chanpin_id" id="chanpin_id" value="{$deal->id}">
+<div class="footer-content">
+    <div class="copyright-info">
+        <div class="site-info">
+        </div>
+        <div class="icons">
+        </div>
+        <div style="width:200px;margin:0 auto; padding:20px 0;">
+        </div>
+    </div>
+</div>
+<!-- js -->
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/My97DatePicker/WdatePicker.js"></script>
+<!-- 立即购买 -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#buttonyuding').click(function(){
+            // 用户ID
+            var userId = document.getElementById('userId').value;
+            // 产品名
+            var deal_name = document.getElementById('deal_name').innerHTML;
+            // 产品价格
+            var priceNum = document.getElementById('priceNum').innerHTML;
+            // 产品ID
+            var chanpin_id = document.getElementById('chanpin_id').value;
+            // 选择的教练
+            var coach_id =$('#coach option:selected') .val();
+            var coach_name = $('#coach option:selected').text();
+            // 预约的时间
+            var yuyue_time = document.getElementById('yuyue_time').value;
+            // 如果用户ID=0   登录   否则   购买
+            if(userId == 0){
+                layer.alert('请先登录', function(index){
+                    window.open('/index/user/login');
+                    location.reload();
+                });
+            }else{
+                // 购买产品的弹出层
+                layer.open({
+                type: 2,
+                title: deal_name,
+                maxmin: true,
+                area: ['500px', '500px'],
+                content: "/index/detail/yuyue?name="+deal_name+"&price="+priceNum+"&chanpin_id="+chanpin_id+"&coach_id="+coach_id+"&coach_name="+coach_name+"&yuyue_time="+yuyue_time,
+              });
+            }
+        });
+    });
+</script>
+<!-- 课程信息和教练信息的切换 -->
+<script type="text/javascript">
+      $(".sn-list li").click(function(){
+        var index = $(".sn-list li").index(this)
+        $(".sn-list li").removeClass("spec-nav-current");
+        $(".j-info-all .tab").css({display: "none"});
+        $(this).addClass("spec-nav-current");
+        $(".j-info-all .tab").eq(index).css({display: "block"});
+    });
+</script>
+</body>
+</html>

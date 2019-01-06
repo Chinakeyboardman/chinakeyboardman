@@ -1,0 +1,27 @@
+{load href="__STATIC__/admin/hui/lib/jquery/1.9.1/jquery.min.js" /}
+<!--<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/jquery.validation/1.14.0/messages_zh.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/static/h-ui.admin/js/H-ui.admin.js"></script>
+{load href="__STATIC__/admin/js/common.js" /}
+{load href="__STATIC__/admin/js/image.js" /}
+<!-- {load href="__STATIC__/admin/uploadify/jquery.uploadify.min.js" /} -->
+<script type="text/javascript" src="__STATIC__/index/Huploadify/jquery.Huploadify.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript" src="__STATIC__/admin/hui/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script>
+    var SCOPE={
+                'city_url':'{:url('api/city/getCitiesByParentId')}',
+            'category_url' : '{:url('api/category/getCategorysByParentId')}',
+            'uploadify_swf':'__STATIC__/admin/uploadify/uploadify.swf',
+            'image_upload' : '{:url('api/image/upload')}',
+            'listorder_url':" {:url('category/listorder')}",
+    };
+
+</script>
+<script src="__STATIC__/admin/hui/lib/My97DatePicker/WdatePicker.js"></script>

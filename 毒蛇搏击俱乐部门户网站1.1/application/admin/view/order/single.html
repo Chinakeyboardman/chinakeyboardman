@@ -1,0 +1,34 @@
+{include file="public/header"}
+<nav class="breadcrumb" style="line-height: 20px;"><i class="Hui-iconfont">&#xe67f;</i>单次服务列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-hover table-sort table-bg">
+			<thead>
+				<tr class="text-c">
+					<th width="60">ID</th>
+					<th width="200">用户名</th>
+					<th width="200">课程名</th>
+					<th width="150">价格(积分)</th>
+					<th width="150">到期时间</th>
+					<th class="td-manage">操作</th>
+				</tr>				
+			</thead>
+			<tbody>
+			{volist name="order" id="vo"}
+				<tr class="text-c">					
+					<td>{$vo.id}</td>
+					<td>{$vo.username}</td>
+					<td>{$vo.coursename}</td>
+					<td>{$vo.price}</td>
+					<td>{$vo.participate_time}</td>
+					<td class="td-manage">
+						<a title="删除" style="text-decoration: none;" class="ml-5" href="javascript:;" onclick="o2o_del('{:url('order/status',['id'=>$vo.id,'status'=>-1])}')"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+			{/volist}
+			</tbody>
+		</table>
+	</div>
+</div>
+{:pagination($order)}
+{include file="public/footer"}

@@ -1,0 +1,48 @@
+<!-- 课程信息和教练信息的切换 -->
+<script type="text/javascript">
+      $(".sn-list li").click(function(){
+        var index = $(".sn-list li").index(this)
+        $(".sn-list li").removeClass("spec-nav-current");
+        $(".j-info-all .tab").css({display: "none"});
+        $(this).addClass("spec-nav-current");
+        $(".j-info-all .tab").eq(index).css({display: "block"});
+    });
+</script>
+<!-- 购物数量 -->
+<script>
+    //校验正整数
+    function isNaN(number){
+        var reg = /^[1-9]\d*$/;
+        return reg.test(number);
+    }
+
+    function inputChange(num){
+        if(!isNaN(num)){
+            $(".buycount-ctrl input").val("1");
+        }
+        else{
+            $(".buycount-ctrl input").val(num);
+            if(num == 1){
+                $(".buycount-ctrl a").eq(0).addClass("disabled");
+            }
+            else{
+                $(".buycount-ctrl a").eq(0).removeClass("disabled");
+            }
+        }
+    }
+
+    $(".buycount-ctrl input").keyup(function(){
+        var num = $(".buycount-ctrl input").val();
+        inputChange(num);
+    });
+    $(".minus").click(function(){
+        var num = $(".buycount-ctrl input").val();
+        num--;
+        inputChange(num);
+    });
+    $(".plus").click(function(){
+        var num = $(".buycount-ctrl input").val();
+        num++;
+        inputChange(num);
+    });
+</script>

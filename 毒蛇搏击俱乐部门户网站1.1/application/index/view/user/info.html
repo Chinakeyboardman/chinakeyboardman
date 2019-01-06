@@ -1,0 +1,64 @@
+{include file="public/head,public/nav"}
+    <div class="wrapper">
+        <div class="head">
+            <ul>  
+                <li><a href="/"><img src="__STATIC__/index/image/logo.png" alt="logo"></a></li>
+                <li class="divider"></li>
+                <li><a href="/"></a></li>
+            </ul>
+        </div>
+        <div class="content" style="height: 800px;">
+            <form action="{:url('user/register')}" method="post">
+                <p class="pass-form-item">
+                    <label class="pass-label">用户名</label>
+                    <input type="text" name="username" class="pass-text-input"  required  value="{$userinfo.username}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">邮箱号</label>
+                    <input type="email" name="email" class="pass-text-input"  required value="{$userinfo.email}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">电话</label>
+                    <input type="text" name="tel" class="pass-text-input"  required value="{$userinfo.tel}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">地址</label>
+                    <input type="text" name="address" class="pass-text-input"  required value="{$userinfo.address}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">身高</label>
+                    <input type="text" name="height" class="pass-text-input"  required value="{$userinfo.height}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">体重</label>
+                    <input type="text" name="weight" class="pass-text-input"  required value="{$userinfo.weight}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">图片</label>
+                    <input type="" value="{$userinfo.image}" name="">
+                    <input type="" value="{$userinfo.image_null}" name="">
+                    <div>
+                        {if condition="$userinfo.image_null eq 0"}
+                        <div id="file_upload"></div>
+                        <input type="hidden" id="file_upload_image" multiple="true" name="file">
+                        <img src="{$userinfo.image}"   id="upload_org_code_img" width="250" height="150">
+                        <input type="hidden" name="file" id="file" value="{$userinfo.image}">
+                         <input type="hidden" id="originimg" value="{$userinfo.image}">
+                        {else}
+                        <div id="file_upload"></div>
+                        <img src="" style="display: none;" id="upload_org_code_img" width="150" height="150">
+                        <!-- <img src="" style="display: none;" id="upload_org_code_img" > -->
+                        <input type="text" style="display: none;" id="file_upload_image" multiple="true" name="file">
+                        <input type="hidden" id="originimg" value="">
+                        <img src="{$userinfo.image}" height="150" width="150">
+                        {/if}
+                    </div>
+                </p>
+                <p class="pass-form-item">
+                    <input type="submit" value="保存" class="pass-button">
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

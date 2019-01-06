@@ -1,0 +1,392 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 课程周表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="mt-20">
+		<form action="{:url('course/saveTable')}">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="80">/</th>
+					<th width="100">星期一</th>
+					<th width="100">星期二</th>
+					<th width="100">星期三</th>
+					<th width="100">星期四</th>
+					<th width="100">星期五</th>
+					<th width="100">星期六</th>
+					<th width="100">星期日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第一节<br/>08:00-09:30</th>
+					<th width="100">
+						<select class="select" name="oneMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="oneSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.oneSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第二节<br/>10:00-11:30</th>
+					<th width="100">
+						<select class="select" name="twoMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="twoSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.twoSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第三节<br/>14:00-15:30</th>
+					<th width="100">
+						<select class="select" name="threeMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="threeSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.threeSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第四节<br/>16:30-18:00</th>
+					<th width="100">
+						<select class="select" name="fourMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fourSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fourSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第五节<br/>19:00-20:00</th>
+					<th width="100">
+						<select class="select" name="fiveMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="fiveSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.fiveSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+				<tr class="text-c">
+					<th width="80" style="background-color: #f5fafe;">第六节<br/>20:00-21:00</th>
+					<th width="100">
+						<select class="select" name="sixMonday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixMonday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixTuesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixTuesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixWednesday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixWednesday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixThursday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixThursday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixFriday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixFriday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixSaturday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixSaturday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+					<th width="100">
+						<select class="select" name="sixSunday">
+							<option value="0">休息</option>
+							{volist name="course" id="vo"}
+							<option value="{$vo.id}" {if condition="$week.sixSunday eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+							{/volist}
+						</select>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row cl" style="float: right;margin: 10px;">
+				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+					<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script type="text/javascript">
+	function saveData(obj){
+		console.log(obj);
+	}
+</script>

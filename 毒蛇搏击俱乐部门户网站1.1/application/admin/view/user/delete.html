@@ -1,0 +1,35 @@
+{include file="public/header"}
+<nav class="breadcrumb" style="line-height: 20px;"><i class="Hui-iconfont">&#xe67f;</i>会员列表<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-hover table-sort table-bg">
+			<thead>
+				<tr class="text-c">
+					<th width="60">ID</th>
+					<th width="100">排序</th>
+					<th width="200">用户名</th>
+					<th width="250">邮箱</th>
+					<th width="250">创建时间</th>
+					<th class="td-status" width="60">状态</th>
+					<!-- <th class="td-manage">操作</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="usersdel" id="vo"}
+					<tr class="text-c">					
+						<td>{$vo.id}</td>
+						<td>{$vo.listorder}</td>
+						<td>{$vo.username}</td>
+						<td>{$vo.email}</td>
+						<td>{$vo.create_time}</td>
+						<td class="td-status">
+							<a href="{:url('user/status',['id'=>$vo.id,'status'=>1])}" title="点击修改状态">{$vo.status|status}</a>
+						</td>
+						<!-- <td class="td-manage"></td> -->
+					</tr>
+				{/volist}
+			</tbody>
+		</table>
+	</div>
+</div>
+{include file="public/footer"}

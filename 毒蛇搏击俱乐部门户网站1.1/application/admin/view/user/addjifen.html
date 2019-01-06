@@ -1,0 +1,26 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('user/addjifenAction')}">
+		<div class="row cl">
+			 用户名：{$user.username} 
+		</div>
+		<div class="row cl" >
+			 当前积分：<label style="color: red;font-size: 20px;margin-left: 10px;">{$user.jifen}</label>
+		</div>
+		<div  class="row cl" >
+			充值 <input type="number" name="add_jifen">积分
+		</div>
+		<input type="text" style="display: none;" name="origin_jifen" value="{$user.jifen}">
+		<input type="text" style="display: none;" name="id" value="{$user.id}">
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}

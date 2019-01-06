@@ -1,0 +1,79 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('course/save')}">
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">课程名：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="name" value="{$course.name}" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">价格：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="price" value="{$course.price}" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">开放时间：</label>
+				<div class="formControls col-xs-8 cl-sm-9">	 
+				   From<input type="text" style="width: 218px;" name="start_time" class="input-text" id="start_time" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"  value="{$course.start_time}" style="width: 250px;">
+				   To<input type="text" style="width: 218px;" name="end_time" class="input-text" id="end_time" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss'})"  value="{$course.end_time}" style="width: 250px;">
+				</div>
+			</div>
+			<div class="row cl">
+			<label class="form form-label col-xs-4 col-sm-2">所需教练特长：</label>
+			<div class="formControls col-xs-5 cl-sm-6" >
+				<span class="select-box">
+					<select name="special" class="select">
+						{volist name="special" id="vo"}
+					  	<option value="{$vo.id}" {if condition="$course.coach_id eq $vo.id"} selected="selected" {/if}>{$vo.special}</option>
+					  	{/volist}
+					</select>
+					</span>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">课程图：</label>
+				{if condition="$course.image_null eq 0"}
+				<div class="formControls col-xs-8 col-sm-9">
+                        <div id="file_upload"></div>
+                        <input type="hidden" id="file_upload_image" multiple="true" name="image">
+                        <img  src="{$course.image}"   id="upload_org_code_img" width="250" height="150">
+                        <input type="hidden" name="image" id="file" value="{$course.image}">
+                         <input style="display: none;" id="originimg" value="{$course.image}">
+                </div>
+                        {else}
+                <div class="formControls col-xs-8 col-sm-9">
+                        <div id="file_upload"></div>
+                        <img src="" style="display: none;" id="upload_org_code_img" width="150" height="150">
+                        <input type="text" style="display: none;" id="file_upload_image" multiple="true" name="image">
+                        <input  style="display: none;"  id="originimg" value="">
+                        <img  src="{$course.image}" height="150" width="150">
+                </div>
+                        {/if}  
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2"> 简介：</label>
+				<div class="formControls col-xs-8 cl-sm-9">	 
+				  <textarea name="brief" style=" height: 300px;" id="editor">{$course.brief|html_entity_decode}</textarea> 
+				</div>
+			</div>
+		<div class="row cl">
+            <input type="hidden" name="id" value="{$course.id}"/>
+            <input type="text" style="display: none;" name="category" value="privacy">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script>
+    $(function(){
+        var ue = UE.getEditor('editor');
+    });
+</script>

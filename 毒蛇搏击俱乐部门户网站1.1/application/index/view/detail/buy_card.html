@@ -1,0 +1,130 @@
+    <link rel="stylesheet" href="__STATIC__/index/css/base.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/login.css" />
+    <script type="text/javascript" src="__STATIC__/index/js/html5shiv.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/respond.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/index/js/jquery-1.11.3.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+<style type="text/css">
+	.price {
+		    background-color: #fff;
+		    border: 1px solid #5bc0de;
+		    display: block;
+		    font-size: 18px;
+		    height: 60px;
+		    line-height: 60px;
+		    min-height: 0;
+		    text-align: center;
+		    width: 200px;
+		    float: left;
+		    margin-left: 30px;
+	}
+	.download {
+		    border: 1px solid #5bc0de;
+		    display: block;
+		    font-size: 18px;
+		    height: 60px;
+		    line-height: 60px;
+		    min-height: 0;
+		    text-align: center;
+		    width: 200px;
+		    float: left;
+		    background-color: #5bc0de;
+    		color: #FFF;
+    		cursor: pointer;
+	}
+	.download a:hover{
+		    color: #fff200;
+    		font-weight: bold;
+	}
+	.jifen {
+		    font-size: 18px;
+    		margin: 20px 0;
+    		color: #211922;
+    		text-align: center;
+	}
+	.jifen_num {
+		color: #FD8E51;
+    	font-size: 40px;
+	}
+	.info {
+		border: 1px solid #ebccd1;
+	    border-radius: 4px;
+	    padding: 15px;
+	    width: 80%;
+	    margin: 10px auto 10px;
+	    background-color: #f2dede;
+	    color: #a94442;
+	    margin-top: 20px;
+	}
+	#tishi {
+	    padding: 15px;
+	    width: 80%;
+	    margin: 0 auto;
+	    color: #a94442;
+	    margin-top: 90px;
+	    color: red;
+	    text-align: center;
+	}
+</style>
+<div>
+	<input type="text" id="user_jifen" value="{$user.jifen}" style="display: none;">
+	<input type="text" id="user_id" value="{$user.id}" style="display: none;">
+	<input type="text" id="need_jifen" value="{$data.price}" style="display: none;">
+	<input type="text" id="term" value="{$data.term}" style="display: none;">
+	<input type="text" id="chanpin_id" value="{$data.chanpin_id}" style="display: none;">
+	<div class="jifen" style="text-align: left;">商品名：{$data.name}</div>
+	<div class="jifen" style="text-align: left;">期限：{$data.term}个月</div>
+	<div class="jifen">我的积分余额：<label class="jifen_num" id="jifen_num">{$user.jifen}</label></div>
+	<div>
+		<div class="price" id="price">所需积分：{$data.price}</div>
+		<div class="download" id="goumai"><a style="color: white;">购买</a></div>
+	</div><br>
+	<div id="tishi"></div>
+	<div class="info">充值方式：联系{$contact.contact}人工充值</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#goumai').click(function(){
+			// 当前用户积分
+			var userjifen = Number(document.getElementById('user_jifen').value);
+			// 产品积分
+			var needjifen = Number(document.getElementById('need_jifen').value);
+			// 用户ID
+			var userid = Number(document.getElementById('user_id').value);
+			// 产品ID
+			var chanpin_id = Number(document.getElementById('chanpin_id').value);
+			// 产品期限
+			var term = Number(document.getElementById('term').value);
+			// 判断当前用户能否购买该产品
+			if(needjifen > userjifen){
+				document.getElementById('tishi').innerHTML = '余额不足，请联系管理员重置！';
+			}else{
+				// 购买产品
+				var url = '{:url("detail/goumaicard")}';
+				var postData = {
+					'userjifen':userjifen,
+					'needjifen':needjifen,
+					'userid':userid,
+					'chanpin_id':chanpin_id,
+					'term':term,
+				};
+				$.post(url,postData,function(result){
+			        //根据返回值判断是否购买成功  1 成功  0  失败
+			        console.log(result);
+			        if(result == 1){
+			        	layer.alert('购买成功', function(index){
+		                    location.reload();
+			        	    parent.layer.close(index);
+		                });
+
+			        }else{
+			        	layer.alert('购买失败');
+			        }
+			    },"json");
+
+
+			}
+		});
+	});
+</script>

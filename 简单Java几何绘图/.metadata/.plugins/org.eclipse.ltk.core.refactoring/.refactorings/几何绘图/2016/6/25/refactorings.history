@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 1 element(s) from project '几何绘图'&#13;&#10;- Original project: '几何绘图'&#13;&#10;- Original element: '几何绘图/src/Paint3.minidrawpad'" description="Delete element" element1="/src&lt;Paint3.minidrawpad" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1466088571332" subPackages="false" version="1.0"/>
+<refactoring accessors="true" comment="Delete 1 element(s) from project '几何绘图'&#13;&#10;- Original project: '几何绘图'&#13;&#10;- Original element: '几何绘图/src/Paint3.icon'" description="Delete element" element1="/src&lt;Paint3.icon" element2="/src&lt;Paint3" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1466088575475" subPackages="false" version="1.0"/>
+</session>

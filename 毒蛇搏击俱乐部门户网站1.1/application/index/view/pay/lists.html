@@ -1,0 +1,61 @@
+<!--包含头部文件-->
+{include file="public/head,public/nav"}
+<div class="firstly">
+    <table class="table table-goods" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr>
+            <th class="first">商品</th>
+            <th width="80">商家</th>
+            <th width="100">订单编号</th>
+            <th width="80">发货状态</th>
+            <th width="80">快递单号</th>
+            <th width="100">单价</th>
+            <th width="50">数量</th>
+            <th width="140" class="last">小计</th>
+        </tr>
+        {volist name="orders" id="vo"}
+        <tr class="j-row">
+            <td class="vtop">
+                <div class="title-area" title="{:getDealNameById($vo.deal_id)}">
+                    <div class="img-wrap">
+                        <a href="" target="_blank"><img src="{:getDealImageById($vo.deal_id)}" width="130" height="79"></a>
+                    </div>
+                    <div class="title-wrap">
+                        <div class="title">
+                            <a href="" class="link">{:getDealNameById($vo.deal_id)}</a>
+                        </div>
+                        <div class="attrs"></div>
+                    </div>
+                </div>
+            </td>
+            <td><span class="font14">{:getBisByDealId($vo.deal_id)}</span></td>
+            <td><span class="font14">{$vo.out_trade_no}</span></td>
+            {if condition="$vo.delivery_status eq 1"}
+            <td><span class="font14">已发货</span></td>
+            {else}
+            <td><span class="font14">未发货</span></td>
+            {/if}
+            <td><span class="font14">{$vo.deliver_code}</span></td>
+            <td>￥<span class="font14">{:getCurrentPriceById($vo.deal_id)}</span></td>
+            <td class="j-cell">
+                <div class="buycount-ctrl">
+                    <span class="font14">{$vo.deal_count}</span>
+                </div>
+                <span class="err-wrap j-err-wrap"></span>
+            </td>
+            <td class="price font14">¥<span class="j-sumPrice">{$vo.total_price}</span></td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+<div class="footer">
+    <ul class="first">
+
+    </ul>
+    <ul class="second">
+
+    </ul>
+</div>
+</body>
+</html>

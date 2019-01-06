@@ -1,0 +1,6 @@
+<input type="text" name="orderId" id="orderId" value="{$orderId}">
+<script type="text/javascript">
+    alert('个人账户是无法开通支付接口，企业方可。此处默认支付成功~~~');
+    var orderId = document.getElementById('orderId').value;
+    window.location.href='{:url("pay/paysuccess",['orderId'=>$orderId])}';
+</script>

@@ -1,0 +1,41 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('activity/save')}">
+		<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">活动名称：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="name" value="" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">图片：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<div id="file_upload"></div>
+					<img src="" style="display: none;" id="upload_org_code_img" width="300" height="200">
+					<input type="hidden" id="file_upload_image" multiple="true" name="image">
+					<input type="hidden" id="originimg" value="">
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2"> 描述：</label>
+				<div class="formControls col-xs-8 cl-sm-9">	 
+				  <textarea name="description" style=" height: 300px;" id="editor"></textarea> 
+				</div>
+			</div>
+			<div class="row cl">
+				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+					<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script>
+    $(function(){
+        var ue = UE.getEditor('editor');
+    });
+</script>

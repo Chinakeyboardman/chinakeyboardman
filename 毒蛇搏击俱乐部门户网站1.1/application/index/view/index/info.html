@@ -1,0 +1,365 @@
+{include file="public/head"}
+  <!--   <link rel="stylesheet" href="__STATIC__/index/css/base.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/register.css" /> -->
+    <style type="text/css">
+        .jifen {
+            font-size: 18px;
+            color: #211922;
+            margin-left: 20px;
+    }
+    .jifen_num {
+        color: #FD8E51;
+        font-size: 40px;
+    }
+    .flip,.flip1 {
+        margin-left: 20px;
+        padding:5px;
+        text-align:center;
+        background:#e5eecc;
+        border:solid 1px #c3c3c3;
+        width: 200px;
+        cursor: pointer;
+    }
+    /* 表格样式  gridtable */
+     table.gridtable {
+         font-family: verdana,arial,sans-serif;
+         font-size:11px;
+         color:#333333;
+         border-width: 1px;
+         border-color: #666666;
+         border-collapse: collapse;
+     }
+     table.gridtable th {
+         border-width: 1px;
+         padding: 8px;
+         border-style: solid;
+         border-color: #666666;
+         background-color: #dedede;
+     }
+     table.gridtable td {
+         border-width: 1px;
+         padding: 8px;
+         border-style: solid;
+         border-color: #666666;
+         background-color: #ffffff;
+         text-align: center;
+     }
+     table a ,table a:hover{
+        text-align: center;
+        color: #000;
+     }
+     /* /gridtable */
+    </style>
+    <div class="wrapper">
+     <div style="margin: 20px 0px -20px 95px;">
+    <a href="/">
+        <img src="__STATIC__/index/image/logo.png" alt="logo">
+    </a>
+</div>
+</div>
+        <div class="content" style="height: 2000px;">
+            <div class="jifen">我的积分余额：<label class="jifen_num" id="jifen_num">{$userinfo.jifen}</label></div>
+            <!-- 个人信息 -->
+            <div class="flip">修改个人信息</div>
+            <form class="form" action="{:url('index/updateinfo')}" method="post" style="display: none;height: 800px;">
+                <p class="pass-form-item">
+                    <label class="pass-label">用户名</label>
+                    <input type="text" name="username" class="pass-text-input"  required  value="{$userinfo.username}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">密码</label>
+                    <input type="password" name="password" class="pass-text-input" placeholder="为安全计，此处不显示密码，点击直接修改" required  value="">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">邮箱号</label>
+                    <input type="email" name="email" class="pass-text-input"  required value="{$userinfo.email}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">电话</label>
+                    <input type="text" name="tel" class="pass-text-input"  required value="{$userinfo.tel}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">地址</label>
+                    <input type="text" name="address" class="pass-text-input"  required value="{$userinfo.address}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">身高</label>
+                    <input type="text" name="height" class="pass-text-input"  required value="{$userinfo.height}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">体重</label>
+                    <input type="text" name="weight" class="pass-text-input"  required value="{$userinfo.weight}">
+                </p>
+                <p class="pass-form-item">
+                    <label class="pass-label">图片</label>
+                    <!-- <input type="" value="{$userinfo.image}" name=""> -->
+                    <!-- <input type="" value="{$userinfo.image_null}" name=""> -->
+                    <div  style="margin-left: 100px;">
+                        {if condition="$userinfo.image_null eq 0"}
+                        <div id="file_upload"></div>
+                        <input type="hidden" id="file_upload_image" multiple="true" name="image">
+                        <img  src="{$userinfo.image}"   id="upload_org_code_img" width="250" height="150">
+                        <input type="hidden" name="image" id="file" value="{$userinfo.image}">
+                         <input style="display: none;" id="originimg" value="{$userinfo.image}">
+                        {else}
+                        <div id="file_upload"></div>
+                        <img src="" style="display: none;" id="upload_org_code_img" width="150" height="150">
+                        <input type="text" style="display: none;" id="file_upload_image" multiple="true" name="image">
+                        <input  style="display: none;"  id="originimg" value="">
+                        <img  src="{$userinfo.image}" height="150" width="150">
+                        {/if}  
+                    </div>
+                </p>
+                <input style="display: none;" value="{$userinfo.id}" name="id">
+                <p class="pass-form-item">
+                    <input type="submit" value="保存" class="pass-button">
+                </p>
+            </form>
+            <!-- /个人信息 -->
+            <!-- 课表 -->
+        <!-- <h3 style="font-size: 20px;color: #444;float: left;font-weight: 700;">课程表</h3> -->
+        <table class="gridtable" style="margin-top: 40px;">
+            <thead>
+                <tr>
+                    <th width="80">/</th>
+                    <th width="100">星期一</th>
+                    <th width="100">星期二</th>
+                    <th width="100">星期三</th>
+                    <th width="100">星期四</th>
+                    <th width="100">星期五</th>
+                    <th width="100">星期六</th>
+                    <th width="100">星期日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="80">第一节<br/>08:00-09:30</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneMonday])}" target="_blank">{:getCourseNameById($week.oneMonday)}<br>{:getCoachName($week.oneMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneTuesday])}" target="_blank">{:getCourseNameById($week.oneTuesday)}<br>{:getCoachName($week.oneTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneWednesday])}" target="_blank">{:getCourseNameById($week.oneWednesday)}<br>{:getCoachName($week.oneWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneThursday])}" target="_blank">{:getCourseNameById($week.oneThursday)}<br>{:getCoachName($week.oneThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneFriday])}" target="_blank">{:getCourseNameById($week.oneFriday)}<br>{:getCoachName($week.oneFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneSaturday])}" target="_blank">{:getCourseNameById($week.oneSaturday)}<br>{:getCoachName($week.oneSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.oneSunday])}" target="_blank">{:getCourseNameById($week.oneSunday)}<br>{:getCoachName($week.oneSunday)}</a></td>
+                </tr>
+                <tr>
+                    <th width="80">第二节<br/>10:00-11:30</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoMonday])}" target="_blank">{:getCourseNameById($week.twoMonday)}<br>{:getCoachName($week.twoMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoTuesday])}" target="_blank">{:getCourseNameById($week.twoTuesday)}<br>{:getCoachName($week.twoTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoWednesday])}" target="_blank">{:getCourseNameById($week.twoWednesday)}<br>{:getCoachName($week.twoWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoThursday])}" target="_blank">{:getCourseNameById($week.twoThursday)}<br>{:getCoachName($week.twoThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoFriday])}" target="_blank">{:getCourseNameById($week.twoFriday)}<br>{:getCoachName($week.twoFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoSaturday])}" target="_blank">{:getCourseNameById($week.twoSaturday)}<br>{:getCoachName($week.twoSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.twoSunday])}" target="_blank">{:getCourseNameById($week.twoSunday)}<br>{:getCoachName($week.twoSunday)}</a></td>
+                </tr>
+                <tr>
+                    <th width="80">第三节<br/>14:00-15:30</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeMonday])}" target="_blank">{:getCourseNameById($week.threeMonday)}<br>{:getCoachName($week.threeMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeTuesday])}" target="_blank">{:getCourseNameById($week.threeTuesday)}<br>{:getCoachName($week.threeTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeWednesday])}" target="_blank">{:getCourseNameById($week.threeWednesday)}<br>{:getCoachName($week.threeWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeThursday])}" target="_blank">{:getCourseNameById($week.threeThursday)}<br>{:getCoachName($week.threeThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeFriday])}" target="_blank">{:getCourseNameById($week.threeFriday)}<br>{:getCoachName($week.threeFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeSaturday])}" target="_blank">{:getCourseNameById($week.threeSaturday)}<br>{:getCoachName($week.threeSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.threeSunday])}" target="_blank">{:getCourseNameById($week.threeSunday)}<br>{:getCoachName($week.threeSunday)}</a></td>
+                </tr>
+                <tr>
+                    <th width="80">第四节<br/>16:30-18:00</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourMonday])}" target="_blank">{:getCourseNameById($week.fourMonday)}<br>{:getCoachName($week.fourMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourTuesday])}" target="_blank">{:getCourseNameById($week.fourTuesday)}<br>{:getCoachName($week.fourTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourWednesday])}" target="_blank">{:getCourseNameById($week.fourWednesday)}<br>{:getCoachName($week.fourWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourThursday])}" target="_blank">{:getCourseNameById($week.fourThursday)}<br>{:getCoachName($week.fourThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourFriday])}" target="_blank">{:getCourseNameById($week.fourFriday)}<br>{:getCoachName($week.fourFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourSaturday])}" target="_blank">{:getCourseNameById($week.fourSaturday)}<br>{:getCoachName($week.fourSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fourSunday])}" target="_blank">{:getCourseNameById($week.fourSunday)}<br>{:getCoachName($week.fourSunday)}</a></td>
+                </tr>
+                <tr>
+                    <th width="80">第五节<br/>19:00-20:00</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveMonday])}" target="_blank">{:getCourseNameById($week.fiveMonday)}<br>{:getCoachName($week.fiveMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveTuesday])}" target="_blank">{:getCourseNameById($week.fiveTuesday)}<br>{:getCoachName($week.fiveTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveWednesday])}" target="_blank">{:getCourseNameById($week.fiveWednesday)}<br>{:getCoachName($week.fiveWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveThursday])}" target="_blank">{:getCourseNameById($week.fiveThursday)}<br>{:getCoachName($week.fiveThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveFriday])}" target="_blank">{:getCourseNameById($week.fiveFriday)}<br>{:getCoachName($week.fiveFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveSaturday])}" target="_blank">{:getCourseNameById($week.fiveSaturday)}<br>{:getCoachName($week.fiveSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.fiveSunday])}" target="_blank">{:getCourseNameById($week.fiveSunday)}<br>{:getCoachName($week.fiveSunday)}</a></td>
+                </tr>
+                <tr>
+                    <th width="80">第六节<br/>20:00-21:00</th>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixMonday])}" target="_blank">{:getCourseNameById($week.sixMonday)}<br>{:getCoachName($week.sixMonday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixTuesday])}" target="_blank">{:getCourseNameById($week.sixTuesday)}<br>{:getCoachName($week.sixTuesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixWednesday])}" target="_blank">{:getCourseNameById($week.sixWednesday)}<br>{:getCoachName($week.sixWednesday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixThursday])}" target="_blank">{:getCourseNameById($week.sixThursday)}<br>{:getCoachName($week.sixThursday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixFriday])}" target="_blank">{:getCourseNameById($week.sixFriday)}<br>{:getCoachName($week.sixFriday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixSaturday])}" target="_blank">{:getCourseNameById($week.sixSaturday)}<br>{:getCoachName($week.sixSaturday)}</a></td>
+                    <td><a href="{:url('detail/index',['id'=>$week.sixSunday])}" target="_blank">{:getCourseNameById($week.sixSunday)}<br>{:getCoachName($week.sixSunday)}</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /课表 -->
+            <!-- 我的订单 -->
+            <div>
+                <div style="color: red;font-size: 16px;">红色的时间表示过期了</div>
+                <div style="color: green;font-size: 16px;">绿色表示没有过期</div>
+            </div>
+            <div style="font-size: 18px;color: #211922;margin-left: 20px;">团体课</div>
+            <div class="dingdan" >
+                <table class="gridtable">
+                    <tr>
+                        <th>产品</th>
+                        <th>教练</th>
+                        <th>价格(积分)</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>创建时间</th>
+                        <th>到期时间</th>
+                    </tr>
+                    {volist name="order" id="vo"}
+                    <tr>
+                        <td>{$vo.order_name}</td>
+                        <td>{$vo.coach}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.start_time}</td>
+                        <td>{$vo.end_time}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.expiry_time|expiryTime}</td>
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+            <!-- 预约的私教课 -->
+            <div style="font-size: 18px;color: #211922;margin-left: 20px;">私教课</div>
+            <div class="dingdan">
+                <table class="gridtable">
+                    <tr>
+                        <th>产品</th>
+                        <th>教练</th>
+                        <th>价格(积分)</th>
+                        <th>创建时间</th>
+                        <th>预约时间</th>
+
+                    </tr>
+                    {volist name="yuyue" id="vo"}
+                    <tr>
+                        <td>{$vo.course_name}</td>
+                        <td>{$vo.coach_name}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.yuyue_time|expiryTime}</td>
+
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+            <!-- 购买的健身器材 -->
+            <div style="font-size: 18px;color: #211922;margin-left: 20px;">健身器材</div>
+            <div class="dingdan">
+                <table class="gridtable">
+                    <tr>
+                        <th>产品</th>
+                        <th>价格(积分)</th>
+                        <th>创建时间</th>
+                        <th>到期时间</th>
+                    </tr>
+                    {volist name="equipment" id="vo"}
+                    <tr>
+                        <td>{$vo.equipment_name}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.expiry_time|expiryTime}</td>
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+            <!-- 单次服务 -->
+            <div style="font-size: 18px;color: #211922;margin-left: 20px;">单次服务</div>
+            <div class="dingdan">
+                <table class="gridtable">
+                    <tr>
+                        <th>产品</th>
+                        <th>价格(积分)</th>
+                        <th>创建时间</th>
+                        <th>活动开始时间</th>
+                    </tr>
+                    {volist name="single" id="vo"}
+                    <tr>
+                        <td>{$vo.single_name}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.participate_time|expiryTime}</td>
+
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+             <!-- 会员卡 -->
+            <div style="font-size: 18px;color: #211922;margin-left: 20px;">会员卡</div>
+            <div class="dingdan">
+                <table class="gridtable">
+                    <tr>
+                        <th>产品</th>
+                        <th>价格(积分)</th>
+                        <th>创建时间</th>
+                        <th>到期时间</th>
+                    </tr>
+                    {volist name="card" id="vo"}
+                    <tr>
+                        <td>{$vo.card_name}</td>
+                        <td>{$vo.price}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.expiry_time|expiryTime}</td>
+                    </tr>
+                    {/volist}
+                </table>
+            </div>
+            <!-- /我的订单 -->
+        </div>
+    </div>
+
+<script>
+    var SCOPE={
+            'image_upload' : '{:url('api/image/upload')}',
+            'link' : '{:url('api/link/getLinkByVideoCategory')}',
+            'DeleteImg' : '{:url('api/DeleteImg/index')}',
+    };
+</script>
+<!-- 上传图片 -->
+<script type="text/javascript">
+    $("#file_upload").Huploadify({
+        auto:true,
+        fileTypeExts:'*.jpg;*.gif;*.bmp;*.png;*.jpeg',
+        multi:false,
+        buttonText:'上传图片',
+        showUploadedPercent:true,
+        showUploadedSize:true,
+        removeCompleted:true,
+        uploader:SCOPE.image_upload,
+        onUploadComplete:function(file,data,response){
+            var obj = JSON.parse(data);
+            if(obj.status){ 
+                var originimg = document.getElementById('originimg').value;
+                if (originimg !== null || originimg !== undefined || originimg !== '') { 
+                        var postData={'deleteimg':originimg};
+                        console.log(postData);
+                        var url = SCOPE.DeleteImg;
+                        console.log(url);
+                        $.post(url,postData,function(response){
+                            console.log(response.message);
+                        });
+                    } 
+                document.getElementById('file_upload').style.color="#fff";
+                $('#upload_org_code_img').attr("src",obj.data);
+                $('#file_upload_image').attr("value",obj.data);
+                $('#file').attr("value",obj.data);
+                $('#originimg').attr("value",obj.data);
+                $('#upload_org_code_img').show();
+            }
+        }
+    },'json');
+</script>
+<!-- 点击修改个人信息   form表单显示 -->
+<script type="text/javascript"> 
+$(document).ready(function(){
+$(".flip").click(function(){
+    $(".form").slideToggle("slow");
+  });
+});
+</script>

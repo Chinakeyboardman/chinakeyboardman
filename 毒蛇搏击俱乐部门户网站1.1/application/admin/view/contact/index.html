@@ -1,0 +1,22 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('contact/update')}">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">联系方式：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$contact.contact}" placeholder="" id="name" name="contact">
+			</div>
+		</div>
+		<div class="row cl">
+            <input type="hidden" name="id" value="{$contact.id}"/>
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}

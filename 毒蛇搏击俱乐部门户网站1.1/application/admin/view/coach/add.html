@@ -1,0 +1,81 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<body>
+<div class="page-container">
+	<form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="{:url('coach/save')}">
+		<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">姓名：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="name" value="" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">年龄：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="age" value="" >
+				</div>
+			</div>
+			 
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">身高：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="height" value="" style="width: 250px;" >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">体重：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="weight" value="" style="width: 250px;" >
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">TEL：</label>
+				<div class="formControls col-xs-5 cl-sm-6">	 
+				  <input class="input-text" type="text" name="tel" value="" style="width: 250px;" required>
+				</div>
+			</div>
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">特长：</label>
+				<div class="formControls col-xs-5 cl-sm-6" >
+					{volist name="special" id="vo"}
+				   <input name="special" type="checkbox" value="{$vo.id}" id="{$vo.id}"/>
+				   <label for="{$vo.id}">{$vo.special}</label>
+				   {/volist}
+				</div>
+			</div>
+			<textarea id="specialData" style="display: none;" name="specialData"></textarea> 
+			<div class="row cl">
+				<label class="form form-label col-xs-4 col-sm-2">代表图：</label>
+				<div class="formControls col-xs-8 col-sm-9">
+					<div id="file_upload"></div>
+					<img src="" style="display: none;" id="upload_org_code_img" width="150" height="150">
+					<input type="hidden" id="file_upload_image" multiple="true" name="image">
+					<input type="hidden" id="originimg" value="">
+				</div>
+			</div>
+			<div class="row cl">
+				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+					<button  type="submit" class="btn btn-primary radius" ><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<!-- 教练特长的选择事件 -->
+<script type="text/javascript">
+	$("input[name='special']").click(function(){
+		if(this.checked == true){
+			$('#specialData').append(this.value+',');
+		}else{
+			var specialData = document.getElementById('specialData').innerHTML;
+			if(specialData.includes(this.value+',')){
+				specialData = specialData.replace(this.value+',','');
+				document.getElementById('specialData').innerHTML = specialData;
+			}else{
+				console.log('不包含该数据');
+			}
+		}
+	});
+</script>

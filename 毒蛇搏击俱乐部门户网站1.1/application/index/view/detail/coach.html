@@ -1,0 +1,121 @@
+{include file="public/head"}
+<div style="margin: 20px 0px -40px 95px;">
+    <a href="/">
+        <img src="__STATIC__/index/image/logo.png" alt="logo">
+    </a>
+</div>
+<div class="p-detail">
+    <div class="p-bread-crumb">
+        <div class="w-bread-crumb">
+        </div>
+    </div>
+    <div class="static-hook-real static-hook-id-5"></div>
+    <div class="p-item-info">
+        <div class="w-item-info">
+            <h2></h2>
+            <div class="item-title">
+                <span class="text-main">{$deal->name}</span>
+            </div>
+            <div class="ii-images static-hook-real static-hook-id-6">
+                <div class="w-item-images">
+                    <div class="images-board">
+                        <img src="{$deal.image}" class="item-img-large" />
+                    </div>
+                </div>
+            </div>
+            <div class="ii-intro">
+                <div class="w-item-intro">
+                <div class="ifram">
+                    <style type="text/css">
+                    .description {
+                        line-height: 23px;
+                        color: #9e9e9e;
+                        margin-top: 60px;
+                        margin-left: 30px;
+                        font-size: 15px;
+                    }
+                </style>
+                <div class="description" style="line-height: 25px;">
+                    <div>姓名：{$deal.name}</div>
+                   <div>年龄：{$deal.age}</div>
+                   <div>身高：{$deal.height}</div>
+                   <div>体重：{$deal.weight}</div>
+                   <div>TEL：{$deal.tel}</div>
+                   <div>特长：
+                    {volist name="special" id="vo"}
+                        <label style="margin-right: 20px;">{$vo.special}</label>
+                    {/volist}
+                   </div>
+               </div>
+                </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-item-info-more">
+        <div class="iim-wrapper">
+            <div class="spec-nav ">
+                <div class="nav-bar"></div>
+                <div class="w-spec-nav" style="position: static; top: auto; z-index: auto;">
+                    <ul class="sn-list">
+                        <li class="spec-nav-current">
+                            <i></i><a><span>相关课程</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="j-info-all" >
+                <li class="tab" >
+                    <div class="ifram">
+                    {volist name="course" id="vo"}
+                     <li class="j-card" style="display: inline-block;margin-left: 10px;">
+                                <a>
+                                    <div class="imgbox">
+                                        <div class="range-area">
+                                            <div class="range-bg"></div>
+                                            <div class="range-inner">
+                                            </div>
+                                        </div>
+                                        <div class="borderbox">
+                                            <a href="{:url('detail/index',['id'=>$vo.id])}" target="_blank"><img src="{$vo.image}" width="200" height="120" /></a>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="contentbox">
+                                    <a href="{:url('detail/index',['id'=>$vo.id])}" target="_blank">
+                                        <div class="header"  style="font-size: 16px;float: left;max-width: 186px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-weight: 700;margin-bottom: 50px;color:#444;">
+                                            <h4 class="title">{$vo.name}</h4>
+                                        </div>
+                                    </a>
+                                    <br>
+                                    <div class="add-info" style="height: 40px;"></div>
+                                    <div class="pinfo">
+                                        <span class="price" style="color: #ff4883;font-size: 24px; font-family: arial;margin-left: -40px;"> {$vo.price}</span><span class="moneyico" style="color: #9e9e9e;margin-left: 10px;">积分</span>
+                                    </div>
+                                    <div class="footer">
+                                        <span class="sold"> </span>
+                                    </div>
+                                </div>
+                            </li>
+                    {/volist}
+                    </div>
+                </li>
+                <li class="tab"> 
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer-content">
+    <div class="copyright-info">
+        <div class="site-info">
+        </div>
+        <div class="icons">
+        </div>
+        <div style="width:200px;margin:0 auto; padding:20px 0;">
+        </div>
+    </div>
+</div>
+</body>
+</html>

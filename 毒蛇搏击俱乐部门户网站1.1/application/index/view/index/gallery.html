@@ -1,0 +1,17 @@
+{include file="public/head"}
+<div style="margin: 20px 0px 10px 95px;">
+    <a href="/">
+        <img src="__STATIC__/index/image/logo.png" alt="logo">
+    </a>
+</div>
+<div class="wrapper" >
+     <div class="preview" style="margin: 20px 90px 20px 90px;"  uk-lightbox="animation: fade">
+        <ul id="previewImgs">
+            {volist name="galleries_array" id="vo"}
+                <li style="display:  block;width: 250px;height:160px;margin: 5px;">
+                    <a href="{$vo}"><img  src="{$vo}" alt="预览图片" style="max-width: 100%;"  name="image_del" width="100%" ></a>
+                </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
